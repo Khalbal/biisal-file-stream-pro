@@ -54,32 +54,24 @@
         <div class="inner">
 
             <div class="main" id="main">
-    <iframe id="youtube-video" width="50%" src="https://www.youtube.com/embed/2KQKFlDK1Uw" frameborder="0" allowfullscreen></iframe>
-     <video id="player" class="player" src="{{file_url}}" type="video/mp4" playsinline controls width="100%" style="display: none;"></video>
-    <div class="file-name" style="display: none;">
-        <h4>File name : </h4>
-        <br>
-        <p id="myDiv"> 🔥 MegaMoviez {{file_name}}</p>
-    </div>
-    <div class="downloadBtn" style="display: none;">
-        <button class="magnet" onclick="bisalDownload()">
-            <img style="height: 35px;" src="https://i.postimg.cc/Zncc9YLq/Pngtree-download-icon-3581467.png" alt="">
-            download video
-        </button>
-        <button class="magnet" onclick="vlc_player()">
-            <img src="https://i.postimg.cc/15TQ4y7B/vlc.png" alt="">
-            watch in VLC PLAYER
-        </button>
-        <button class="magnet" onclick="mx_player()">
-            <img src="https://i.postimg.cc/sx4Msv4T/mx.png" alt="">
-            watch in MX PLAYER
-        </button>
-    </div>
-    <p style="font-weight: 500; display: none;">
-        Video not playing? Possibly because your browser or the player doesn't support codec. Please download or watch on VLC or MXPLAYER.
-    </p>
-    <button id="closeButton" style="display: none;">Close</button>
-            </div>
+                <video id="player" class="player" src="{{file_url}}" type="video/mp4" width="100%"></video>
+                <div class="player"></div>
+                <div class="file-name">
+                    <h4>File name : </h4>
+                    <br>
+                    <p id="myDiv"> Megamoviez {{file_name}}</p>
+                </div>
+                <div class="downloadBtn">
+                    
+                    <button class="magnet" onclick="bisalDownload()"><img style="height: 35px;"
+                            src="https://i.postimg.cc/Zncc9YLq/Pngtree-download-icon-3581467.png" alt="">download video
+                    </button>
+                    <button class="magnet" onclick="vlc_player()"><img src="https://i.postimg.cc/15TQ4y7B/vlc.png"
+                            alt="">watch in VLC PLAYER</button>
+                    <button class="magnet" onclick="mx_player()"><img src="https://i.postimg.cc/sx4Msv4T/mx.png"
+                            alt="">watch in MX PLAYER</button>
+                    
+                </div>
             
             <div class="abt">
                 <div class="about">
@@ -201,46 +193,6 @@
                     <h4 style="font-weight: 700;">This Page Is Made By <a
                             href="https://t.me/bisal_files"><span>Bisal</span></a></h4>
                 </div>
-
-                <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var youtubeVideo = document.getElementById("youtube-video");
-        var player = document.getElementById("player");
-        var closeButton = document.getElementById("closeButton");
-
-        // Function to show main content (buttons) and hide YouTube video
-        function showButtons() {
-            document.querySelector('.downloadBtn').style.display = 'block';
-            document.querySelector('p').style.display = 'block';
-            closeButton.style.display = 'none';
-            youtubeVideo.style.display = 'none';
-            player.style.display = 'block';
-        }
-
-        // Function to track time watched and prompt user to continue or close video
-        function trackTimeWatched() {
-            setTimeout(function() {
-                var response = confirm("Would you like to continue watching?");
-                if (!response) {
-                    showButtons();
-                } else {
-                    closeButton.style.display = 'block';
-                }
-            }, 10000); // 10 seconds delay
-        }
-
-        // Start tracking time watched when the video starts playing
-        youtubeVideo.addEventListener("load", function() {
-            trackTimeWatched();
-        });
-
-        // Close button event listener
-        closeButton.addEventListener("click", function() {
-            showButtons();
-        });
-    });
-                </script>
-                
                 
             </center>
         </footer>

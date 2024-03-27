@@ -52,7 +52,7 @@
 
     <div class="outer">
         <div class="inner">
-            <div class="main" id="main" style="display: none;>
+            <div class="main" id="main">
 
                 <iframe id="youtube-video" width="560" height="315" src="https://www.youtube.com/embed/2KQKFlDK1Uw" frameborder="0" allowfullscreen></iframe>
                
@@ -205,34 +205,40 @@
                 </div>
 
                 <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var video = document.getElementById("youtube-video");
+
         // Function to show the main content after watching the video for 10 seconds
         function showMainContent() {
-            var mainContent = document.getElementById('main');
+            var mainContent = document.getElementById("main");
             if (mainContent) {
-                mainContent.style.display = 'block';
+                mainContent.style.display = "block";
             }
         }
 
         // Function to track time watched and show main content after 10 seconds
         function trackTimeWatched() {
-            var video = document.getElementById('youtube-video');
             var watchedTime = 0;
             var timer = setInterval(function() {
-                if (video && video.currentTime) {
-                    watchedTime++;
-                    if (watchedTime >= 10) {
-                        clearInterval(timer);
-                        showMainContent();
-                    }
+                if (video && video.contentWindow && video.contentWindow.postMessage) {
+                    video.contentWindow.postMessage('{"event":"command","func":"' + 'getCurrentTime' + '","args":""}', '*');
+                }
+                watchedTime++;
+                if (watchedTime >= 10) {
+                    clearInterval(timer);
+                    showMainContent();
                 }
             }, 1000);
         }
 
         // Start tracking time watched when the video starts playing
-        document.getElementById('youtube-video').onplay = function() {
+        video.addEventListener("load", function() {
             trackTimeWatched();
-        };
+        });
+    });
                 </script>
+
+                
                 
             </center>
         </footer>
